@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>FlaskerNews - {% block title%}{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <ul>
+                <li><a href="{{ url_for('home.home') }}">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}"> <strong>FlaskerNews</strong>
+                    </a>
+                </li> |
+                <li><a href="{{ url_for('home.home') }}">Home</a></li> |
+                {% if session.logged_in %}
+                    <li><a href="{{ url_for('profile.profile', user=session.name) }}">{{ session.name }}</a></li> |
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li> |
+                {% endif %}
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        {% block body%}
+        {% endblock %}
+    <hr/>
+    </div>
+</body>
+</html>

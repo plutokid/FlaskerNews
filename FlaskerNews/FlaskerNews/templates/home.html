@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block body %}
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% for result in results %}
+    {{ result[0] }} {# id #}
+    {{ result[1] }} {# user_id #}
+    {{ result[2] }} {# title #}
+    {{ result[3] }} {# url #}
+    {{ result[4] }} {# votes #}
+    {{ result[5] }} {# date #}
+<br/>
+{% endfor %}
+{% endblock %}

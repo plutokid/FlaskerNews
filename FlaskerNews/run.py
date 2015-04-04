@@ -1,3 +1,4 @@
-from app import app
+from FlaskerNews import app
+
 
 app.run(debug=True)
