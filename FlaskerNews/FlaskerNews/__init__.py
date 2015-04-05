@@ -1,7 +1,7 @@
 import sqlite3
 import os
-from flask import Flask, render_template, g, current_app
-from .views import home, profile, auth, submit
+from flask import Flask, render_template, g
+from .views import home, profile, auth, submit, vote
 
 app = Flask(__name__)
 
@@ -15,6 +15,7 @@ app.register_blueprint(home.routes)
 app.register_blueprint(auth.routes)
 app.register_blueprint(submit.routes)
 app.register_blueprint(profile.routes)
+app.register_blueprint(vote.routes)
 
 
 def get_db():

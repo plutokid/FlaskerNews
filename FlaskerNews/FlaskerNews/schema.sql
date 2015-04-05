@@ -8,7 +8,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS links;
 CREATE TABLE links (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_name TEXT NOT NULL,
     title TEXT NOT NULL,
     url TEXT NOT NULL,
     votes INTEGER NOT NULL,

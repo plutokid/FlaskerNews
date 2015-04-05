@@ -4,18 +4,18 @@
 
 
 {% block body %}
-    {% if get_flashed_messages() %}
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-info" role="alert">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
+
 {% for result in results %}
-    {{ result[0] }} {# id #}
-    {{ result[1] }} {# user_id #}
-    {{ result[2] }} {# title #}
-    {{ result[3] }} {# url #}
-    {{ result[4] }} {# votes #}
-    {{ result[5] }} {# date #}
-<br/>
+<div class="row">
+    <div class="col-md-12">
+        {{ loop.index }}.
+        <a href="{{ url_for('vote.vote', id=result[0]) }}">
+            <img src="{{ url_for('static', filename='img/vote.gif') }}">
+        </a>
+        <a href="{{ result[3]|safe() }}">{{ result[2] }}</a>
+        <br/>
+        <small>{{ result[4] }} points by <a href="{{ url_for('profile.profile', user=result[1]) }}">{{ result[1] }}</a> at {{ result[5] }}</small>
+    </div>
+</div>
 {% endfor %}
 {% endblock %}

@@ -16,13 +16,21 @@
                 </li> |
                 <li><a href="{{ url_for('home.home') }}">Home</a></li> |
                 {% if session.logged_in %}
-                    <li><a href="{{ url_for('profile.profile', user=session.name) }}">{{ session.name }}</a></li> |
+                    <li><a href="{{ url_for('profile.profile', user=session.user_name) }}">{{ session.user_name }}</a></li> |
+                    <li><a href="{{ url_for('submit.submit') }}">Submit</a></li> |
                 {% else %}
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li> |
                 {% endif %}
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             </ul>
         </div>
+
+        {% if get_flashed_messages() %}
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
         {% block body%}
         {% endblock %}
     <hr/>
