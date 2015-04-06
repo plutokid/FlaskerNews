@@ -8,8 +8,8 @@ app = Flask(__name__)
 DEBUG = True
 SECRET_KEY = "sfdha8e7qwoy86&^FG76OUYBXyuo&^Q67OAOD(P*W*R(#WRF"
 DATABASE = os.path.join(app.root_path, 'data/flasker.db')
-# register all the blueprints for the different views
 
+# register all the blueprints for the different views
 app.config.from_object(__name__)
 app.register_blueprint(home.routes)
 app.register_blueprint(auth.routes)
@@ -19,12 +19,19 @@ app.register_blueprint(vote.routes)
 
 
 def get_db():
+    """
+    Create a connection to the SQLite db and store it in g.db
+    :return: SQLite connection
+    """
     if not hasattr(g, 'db'):
         g.db = sqlite3.connect(DATABASE)
     return g.db
 
 
 def init_db():
+    """
+    Used for initial setup of the db. Run from command line.
+    """
     with app.app_context():
         db = get_db()
         with app.open_resource('schema.sql', mode='r') as f:
@@ -34,11 +41,13 @@ def init_db():
 
 @app.before_request
 def before_request():
+    # Ensure every request has access to the db
     g.db = get_db()
 
 
 @app.teardown_request
 def teardown_request(exception):
+    # close the db after every request
     if hasattr(g, 'db'):
         g.db.close()
 

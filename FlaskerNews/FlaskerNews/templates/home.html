@@ -2,15 +2,13 @@
 
 {% block title %}Home{% endblock %}
 
-
 {% block body %}
-
 {% for result in results %}
 <div class="row">
     <div class="col-md-12">
         {{ loop.index }}.
-        <a href="{{ url_for('vote.vote', id=result[0]) }}">
-            <img src="{{ url_for('static', filename='img/vote.gif') }}">
+        <a href="{{ url_for('vote.vote', link_id=result[0]) }}">
+            <img class="vote" src="{{ url_for('static', filename='img/vote.gif') }}">
         </a>
         <a href="{{ result[3]|safe() }}">{{ result[2] }}</a>
         <br/>

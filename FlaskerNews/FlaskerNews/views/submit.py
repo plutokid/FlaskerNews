@@ -6,6 +6,10 @@ routes = Blueprint('submit', __name__)
 
 @routes.route('/submit', methods=['GET', 'POST'])
 def submit():
+    """
+    Create a new link submission
+    :return: View
+    """
     if session.get('logged_in'):
         if request.method == 'GET':
             return render_template('submit.html')

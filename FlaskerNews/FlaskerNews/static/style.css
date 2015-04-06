@@ -32,7 +32,10 @@ li {
 }
 
 .row {
+    padding-left: 10px;
+}
 
-padding-left: 10px;
-
+small {
+    padding-left: 18px;
+    color: #828282;
 }
