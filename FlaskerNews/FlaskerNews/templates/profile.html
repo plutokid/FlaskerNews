@@ -3,4 +3,19 @@
 {% block title %}{{ user }}{% endblock %}
 {% block body %}
     <h1>{{ user }}</h1>
+    {% if not links %}
+        <h3>{{ user }} hasn't submitted any links</h3>
+    {% else %}
+        <h3>Submitted:</h3>
+    {% for link in links %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ loop.index }}.
+                <a href="{{ link[3]|safe() }}">{{ link[2] }}</a>
+                <br/>
+                <small>{{ link[4] }} points by <a href="{{ url_for('profile.profile', user=link[1]) }}">{{ link[1] }}</a> at {{ link[5] }}</small>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
 {% endblock %}

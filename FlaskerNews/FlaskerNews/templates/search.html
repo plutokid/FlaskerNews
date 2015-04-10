@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}{{ user }}{% endblock %}
+{% block body %}
+    {% if not results %}
+        <h3>No results</h3>
+    {% else %}
+        <h3>Search Results:</h3>
+    {% for result in results %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ loop.index }}.
+                <a href="{{ result[3]|safe() }}">{{ result[2] }}</a>
+                <br/>
+                <small>{{ result[4] }} points by <a href="{{ url_for('profile.profile', user=result[1]) }}">{{ result[1] }}</a> at {{ result[5] }}</small>
+            </div>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

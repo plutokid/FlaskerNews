@@ -15,4 +15,11 @@ def profile(user):
         user = results[0]
     else:
         user = 'User not found'
-    return render_template('profile.html', user=user)
+    cur = g.db.execute('SELECT * FROM links WHERE user_name = ? ORDER BY votes DESC', [user])
+    results = cur.fetchall()
+    links = None
+    if results is not None:
+        links = results
+    else:
+        links = 'User has no posts'
+    return render_template('profile.html', user=user, links=links)

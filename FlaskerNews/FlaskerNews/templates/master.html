@@ -38,6 +38,13 @@
         {% block body%}
         {% endblock %}
     <hr/>
+<footer>
+    <small><a href="{{ url_for('about.about') }}">About</a> | By Ronnie McGregor</small>
+    <form action="{{ url_for('search.search') }}" method="GET">
+        <input type="text" name="query" placeholder="Search..." />
+        <input type="submit" />
+    </form>
+</footer>
     </div>
 </body>
 </html>

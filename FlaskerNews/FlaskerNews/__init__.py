@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from flask import Flask, render_template, g
-from .views import home, profile, auth, submit, vote
+from .views import home, about, profile, auth, submit, vote, search
 
 app = Flask(__name__)
 
@@ -12,10 +12,12 @@ DATABASE = os.path.join(app.root_path, 'data/flasker.db')
 # register all the blueprints for the different views
 app.config.from_object(__name__)
 app.register_blueprint(home.routes)
+app.register_blueprint(about.routes)
 app.register_blueprint(auth.routes)
 app.register_blueprint(submit.routes)
 app.register_blueprint(profile.routes)
 app.register_blueprint(vote.routes)
+app.register_blueprint(search.routes)
 
 
 def get_db():
